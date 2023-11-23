@@ -14,10 +14,12 @@ import java.sql.*;
 
 public class HelloController {
 
+
     @FXML
     public TextField loginField;
     @FXML
     public PasswordField passwordField;
+    public static boolean isAdmin = false;
 
     @FXML
     public void onLoginButtonClick(ActionEvent actionEvent) throws SQLException, IOException {
@@ -37,13 +39,26 @@ public class HelloController {
             String login = resultSet.getString("login");
             String password = resultSet.getString("password");
 
-            if (login.equals(loginField.getText()) && password.equals(passwordField.getText())){
+            if (loginField.getText().equals("admin") && passwordField.getText().equals("admin")){
+                isAdmin = true;
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("enter.fxml"));
                 Stage enterStage = new Stage();
-                Scene enter = new Scene(fxmlLoader.load(), 320, 240);
+                Scene enter = new Scene(fxmlLoader.load(), 600, 300);
+                enterStage.setScene(enter);
+                enterStage.show();
+                break;
+            } else if (login.equals(loginField.getText()) && password.equals(passwordField.getText())){
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("enter.fxml"));
+                Stage enterStage = new Stage();
+                Scene enter = new Scene(fxmlLoader.load(), 600, 300);
                 enterStage.setScene(enter);
                 enterStage.show();
             }
+
         }
+    }
+
+    private void showAdmin() {
+
     }
 }

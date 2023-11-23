@@ -1,6 +1,7 @@
 package com.example.mycarprice;
 import java.sql.*;
 public class DBConnector {
+
     public void connect() throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/myCarPrice","postgres", "admin");
 
